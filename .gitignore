@@ -6,7 +6,9 @@
 # User-specific files
 *.rsuser
 *.suo
+FirstProjectTahalf/appsettings.json
 *.user
+
 *.userosscache
 *.sln.docstates
 
