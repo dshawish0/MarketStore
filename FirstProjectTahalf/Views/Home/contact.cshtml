@@ -1,0 +1,200 @@
+﻿@model Tuple<IEnumerable<FirstProjectTahalf.Models.ProjectHome>, FirstProjectTahalf.Models.ProjectUser,
+                                                                                    IEnumerable<FirstProjectTahalf.Models.ProjectCategory>, IEnumerable<FirstProjectTahalf.Models.ProjectProduct>,
+                                                                                    IEnumerable<FirstProjectTahalf.Models.ProjectStore>, FirstProjectTahalf.Models.ProjectStore,
+                                                                                    FirstProjectTahalf.Models.ProjectProduct>
+@{
+    ViewData["Title"] = "contact";
+    Layout = "~/Views/Shared/_CustomerLayout.cshtml";
+    var item = Model.Item1.ToList();
+
+}
+<section class="breadcrumb-section set_bg" style="background-image: url(/customerdashbordstatic/img/gradients-for-photoshop-background-ui-ohhappiness.jpg">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <div class="breadcrumb__text">
+                    <h2>Contact Us</h2>
+                    <div class="breadcrumb__option">
+                        <a href="/Home/Index">Home</a>
+                        <span>Contact Us</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Breadcrumb Section End -->
+<!-- Contact Section Begin -->
+<section class="contact spad">
+    <div class="container">
+        <div class="row" style="display: flex; justify-content: center;">
+
+            <div class="col-lg-3 col-md-3 col-sm-6 text-center">
+                <div class="contact__widget">
+                    <span class="icon_phone"></span>
+                    <h4>Phone</h4>
+                    <p>@item[0].Phonenumber</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6 text-center">
+                <div class="contact__widget">
+                    <span class="icon_pin_alt"></span>
+                    <h4>Address</h4>
+                    <p>@item[0].Address</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6 text-center">
+                <div class="contact__widget">
+                    <span class="icon_mail_alt"></span>
+                    <h4>Email</h4>
+                    <p>@item[0].Email</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Contact Section End -->
+<!-- Map Begin -->
+<div class="map">
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d49116.39176087041!2d-86.41867791216099!3d39.69977417971648!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x886ca48c841038a1%3A0x70cfba96bf847f0!2sPlainfield%2C%20IN%2C%20USA!5e0!3m2!1sen!2sbd!4v1586106673811!5m2!1sen!2sbd"
+            height="500" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+    <div class="map-inside">
+        <i class="icon_pin"></i>
+        <div class="inside-widget">
+            <h4>Amman</h4>
+            <ul>
+                <li>Phone: @item[0].Phonenumber</li>
+                <li>Add: @item[0].Address</li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- Map End -->
+<!-- Contact Form Begin -->
+<div class="contact-form spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="contact__form__title">
+                    <h2>FeedBack</h2>
+                </div>
+            </div>
+        </div>
+        @if (Model.Item2 == null)
+        {
+            <form action="#">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6">
+                        <input type="text" placeholder="Your name">
+                    </div>
+                    <div class="col-lg-6 col-md-6">
+                        <input type="text" placeholder="Your Email">
+                    </div>
+                    <div class="col-lg-12 text-center">
+                        <textarea placeholder="Your message"></textarea>
+                        <button type="submit" class="site-btn">SEND MESSAGE</button>
+                    </div>
+                </div>
+            </form>
+        }
+        else
+        {
+            <form asp-action="feedback">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6">
+                        <input type="text" placeholder="" value="@Model.Item2.Fname @Model.Item2.Lname" readonly>
+                    </div>
+                    <div class="col-lg-6 col-md-6">
+                        <input type="text" placeholder="" value="@Model.Item2.Email" readonly>
+                    </div>
+                    <div class="col-lg-12 text-center">
+                        <textarea placeholder="Your message" name="mes" id="mes"></textarea>
+                        <button type="submit" class="site-btn">SEND MESSAGE</button>
+                    </div>
+                </div>
+            </form>
+        }
+    </div>
+</div>
+
+
+<link href="~/css/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link href="~/css/vendor/animate.css/animate.min.css" rel="stylesheet">
+<link href="~/css/vendor/aos/aos.css" rel="stylesheet">
+@*<link href="~/css/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="~/css/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">*@
+<link href="~/css/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+<link href="~/css/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+<link href="~/css/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+<!-- Template Main CSS File -->
+@*<link href="assets/css/style.css" rel="stylesheet">*@
+<link href="~/css/style.css" rel="stylesheet" />
+
+<section id="testimonials" class="testimonials">
+    <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+            <h2>Testimonials</h2>
+        </div>
+
+        <div class="testimonials-slider swiper" data-aos="fade-up" data-aos-delay="100">
+            <div class="swiper-wrapper">
+
+                @foreach (var user in ViewBag.user)
+                {
+                    @foreach (var test in ViewBag.test)
+                    {
+                        if (user.Userid == test.Userid)
+                        {
+                            <div class="swiper-slide">
+                                <div class="testimonial-item">
+                                    <p>
+                                        <i class="bx bxs-quote-alt-left quote-icon-left"></i> @test.Message
+                                        <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+                                    </p>
+                                    <img src=@Url.Content("~/images/" + user.ImagePath) class="testimonial-img" alt="">
+                                    <h3>@user.Fname @user.Lname</h3>
+                                </div>
+                            </div>
+                        }
+                    }
+                }
+                        <!-- End testimonial item -->
+
+                    </div>
+            <div class="swiper-pagination"></div>
+        </div>
+
+    </div>
+
+</section>
+
+<script src="~/css/vendor/purecounter/purecounter.js"></script>
+<script src="~/css/vendor/aos/aos.js"></script>
+<script src="~/css/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="~/css/vendor/glightbox/js/glightbox.min.js"></script>
+<script src="~/css/vendor/swiper/swiper-bundle.min.js"></script>
+<script src="~/css/vendor/php-email-form/validate.js"></script>
+
+
+<script>
+
+    window.addEventListener('load', () => HideRemove())
+
+    function HideRemove() {
+        var element = document.getElementById("Contact");
+        element.classList.add("active");
+
+        var element2 = document.getElementById("Home");
+        element2.classList.remove("active");
+
+        var element3 = document.getElementById("Stores");
+        element3.classList.remove("active");
+
+    }
+
+</script>
+
+<!-- Template Main JS File -->
+<script src="~/js/main.js"></script>

@@ -1,0 +1,190 @@
+﻿@model FirstProjectTahalf.Models.ProjectUser
+
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <title>SignIn/SignUp</title>
+    <link href="~/css/login-signup.css" rel="stylesheet" />
+    <script>window.console = window.console || function (t) { };</script>
+
+
+
+    <script>
+        if (document.location.search.match(/type=embed/gi)) {
+            window.parent.postMessage("resize", "*");
+        }</script>
+
+
+</head>
+
+<body translate="no" data-new-gr-c-s-check-loaded="14.1054.0" data-gr-ext-installed="">
+
+
+    <div id="container" class="container">
+        <!-- FORM SECTION -->
+        <div class="row">
+            <!-- SIGN UP -->
+
+            <form asp-action="Register" class="col align-items-center flex-col sign-up" enctype="multipart/form-data">
+                <div class="col align-items-center flex-col sign-up">
+                    <div class="form-wrapper align-items-center">
+                        <div class="form sign-up">
+                            <div class="input-group">
+                                <i class='bx bxs-user'></i>
+                                <input asp-for="Fname" type="text" placeholder="Fname">
+                            </div>
+
+                            <div class="input-group">
+                                <i class='bx bxs-user'></i>
+                                <input asp-for="Lname" type="text" placeholder="Lname">
+                            </div>
+                            <div class="input-group">
+                                <i class='bx bx-mail-send'></i>
+                                <input asp-for="Email" type="email" placeholder="Email">
+                            </div>
+                            <div class="input-group">
+                                <i class='bx bxs-lock-alt'></i>
+                                <input asp-for="Password" type="password" id="pass" placeholder="Password">
+                            </div>
+
+                            <div class="input-group">
+                                <i class='bx bxs-lock-alt'></i>
+                                <input type="password" id="Repass" placeholder="Confirm password">
+                            </div>
+
+                            <div class="input-group">
+                                <span id="ErrorM" style="color:red; text-align:center; padding-top:10px; display:none;font-size:12px;"><b>Passwords not matches</b></span>
+                            </div>
+
+                            <div class="input-group">
+                                <i class='bx bxs-lock-alt'></i>
+                                <input asp-for="ImgFileProfile" placeholder="Ur Img">
+
+                            </div>
+
+                            <button id="signup">
+                                Sign up
+                            </button>
+                            <p>
+                                <span>
+                                    Already have an account?
+                                </span>
+                                <b onclick="toggle()" class="pointer">
+                                    Sign in here
+                                </b>
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </form>
+            <!-- END SIGN UP -->
+            <!-- SIGN IN -->
+            <form asp-action="Login" class="col align-items-center flex-col sign-up">
+                <div class="col align-items-center flex-col sign-in">
+                    <div class="form-wrapper align-items-center">
+                        <div class="form sign-in">
+                            <div class="input-group">
+                                <i class='bx bxs-user'></i>
+                                <input type="email" id="email" name="email" placeholder="Email" required>
+                            </div>
+                            <div class="input-group">
+                                <i class='bx bxs-lock-alt'></i>
+                                <input type="password" id="password" name="password" placeholder="Password" required>
+                            </div>
+                            <button>
+                                Sign in
+                            </button>
+                            <p>
+                                <b>
+                                    Forgot password?
+                                </b>
+                            </p>
+                            <p>
+                                <span>
+                                    Don't have an account?
+                                </span>
+                                <b onclick="toggle()" class="pointer">
+                                    Sign up here
+                                </b>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="form-wrapper">
+
+                    </div>
+                </div>
+            </form>
+            <!-- END SIGN IN -->
+        </div>
+        <!-- END FORM SECTION -->
+        <!-- CONTENT SECTION -->
+        <div class="row content-row">
+            <!-- SIGN IN CONTENT -->
+            <div class="col align-items-center flex-col">
+                <div class="text sign-in">
+                    <h2>
+                        Welcome
+                    </h2>
+
+                </div>
+                <div class="img sign-in">
+
+                </div>
+            </div>
+            <!-- END SIGN IN CONTENT -->
+            <!-- SIGN UP CONTENT -->
+            <div class="col align-items-center flex-col">
+                <div class="img sign-up">
+
+                </div>
+                <div class="text sign-up">
+                    <h2>
+                        Join with us
+                    </h2>
+
+                </div>
+            </div>
+            <!-- END SIGN UP CONTENT -->
+        </div>
+        <!-- END CONTENT SECTION -->
+    </div>
+    <script id="rendered-js">
+        let container = document.getElementById('container');
+
+        toggle = () => {
+            container.classList.toggle('sign-in');
+            container.classList.toggle('sign-up');
+        };
+
+        setTimeout(() => {
+            container.classList.add('sign-in');
+        }, 200);
+
+//# sourceURL=pen.js</script>
+</body>
+
+<grammarly-desktop-integration data-grammarly-shadow-root="true"></grammarly-desktop-integration>
+
+
+</html>
+
+<script>
+
+
+    document.getElementById("signup").addEventListener("click", function () {
+        //alert("asdasdasdsa");
+
+        var pass = document.getElementById("pass").value;
+        var rePass = document.getElementById("Repass").value;
+
+        if (pass != rePass) {
+            document.getElementById("ErrorM").style.display = "inline";
+            event.preventDefault();
+        }
+
+
+    });
+
+</script>

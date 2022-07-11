@@ -1,0 +1,61 @@
+﻿@model Tuple<IEnumerable<FirstProjectTahalf.Models.ProjectHome>, FirstProjectTahalf.Models.ProjectUser,
+                                IEnumerable<FirstProjectTahalf.Models.ProjectCategory>, IEnumerable<FirstProjectTahalf.Models.ProjectProduct>,
+                                IEnumerable<FirstProjectTahalf.Models.ProjectStore>, FirstProjectTahalf.Models.ProjectStore,
+                                FirstProjectTahalf.Models.ProjectProduct>
+@{
+    ViewData["Title"] = "Shops";
+    Layout = "~/Views/Shared/_CustomerLayout.cshtml";
+}
+
+<!-- Breadcrumb Section Begin -->
+<section class="breadcrumb-section set_bg" style="background-image: url(/customerdashbordstatic/img/gradients-for-photoshop-background-ui-ohhappiness.jpg">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <div class="breadcrumb__text">
+                    <h2>Our Stores</h2>
+                    <div class="breadcrumb__option">
+                        <a href="/Home/Index">Home</a>
+                        <span>Shop</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Breadcrumb Section End -->
+<!-- Product Section Begin -->
+<section class="categories" style="margin-top:50px; margin-bottom:75px">
+    <div class="container">
+        <div class="row">
+            <div class="categories__slider owl-carousel">
+                @foreach (var pro in Model.Item5)
+                {
+                    <div class="col-lg-3">
+                        <div class="categories__item set_bg" style="background-image: url(@Url.Content("~/images/"+pro.ImagePath))">
+                            <h5><a asp-action="shopsGrid" asp-route-id="@pro.Storeid">@pro.Namestore</a></h5>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+
+    window.addEventListener('load', () => HideRemove())
+
+    function HideRemove() {
+        var element = document.getElementById("Stores");
+        element.classList.add("active");
+
+        var element2 = document.getElementById("Home");
+        element2.classList.remove("active");
+
+        var element3 = document.getElementById("Contact");
+        element3.classList.remove("active");
+
+    }
+
+</script>

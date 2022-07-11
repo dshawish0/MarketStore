@@ -1,0 +1,158 @@
+﻿@model Tuple<IEnumerable<FirstProjectTahalf.Models.ProjectHome>, FirstProjectTahalf.Models.ProjectUser,
+                                IEnumerable<FirstProjectTahalf.Models.ProjectCategory>, IEnumerable<FirstProjectTahalf.Models.ProjectProduct>,
+                                IEnumerable<FirstProjectTahalf.Models.ProjectStore>, FirstProjectTahalf.Models.ProjectStore,
+                                FirstProjectTahalf.Models.ProjectProduct>
+
+@{
+    ViewData["Title"] = "cartDetails";
+    Layout = "~/Views/Shared/_CustomerLayout.cshtml";
+
+    float cost = 0;
+
+
+}
+
+<!-- Breadcrumb Section Begin -->
+<section class="breadcrumb-section set_bg" style="background-image: url(/customerdashbordstatic/img/gradients-for-photoshop-background-ui-ohhappiness.jpg">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <div class="breadcrumb__text">
+                    <h2>Shopping Cart</h2>
+                    <div class="breadcrumb__option">
+                        <a href="/Home/Index">Home</a>
+                        <span>Shopping Cart</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Breadcrumb Section End -->
+<!-- Shoping Cart Section Begin -->
+<section class="shoping-cart spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="shoping__cart__table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th class="shoping__product">Products</th>
+                                <th>Price</th>
+                                <th>Quantity</th>
+                                <th>Total</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (ViewBag.orderList != null)
+                            {
+                                @foreach (var item in ViewBag.orderList)
+                                {
+                                    foreach (var item2 in Model.Item4)
+                                    {
+                                        if (item.Proid == item2.Productid)
+                                        {
+                                            cost += (float)@item2.Prosale;
+                                            <tr>
+                                                <td class="shoping__cart__item">
+                                                    <img src=@Url.Content("~/images/" + @item2.ImagePath) style="width:75px; height:75px; " alt="">
+                                                    <h5>@item2.Productname</h5>
+                                                </td>
+                                                <td class="shoping__cart__price">
+                                                    $@item2.Prosale
+                                                </td>
+                                                <td class="shoping__cart__quantity">
+                                                    <div class="quantity">
+                                                        <div class="pro-qty">
+                                                            <input type="text" value="1">
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td class="shoping__cart__total">
+                                                    $@item2.Prosale
+                                                </td>
+                                                <td class="shoping__cart__item__close">
+                                                    @using (Html.BeginForm("deletProFormCart", "Home", new { ProductOrderid = @item.Productorderid }, FormMethod.Post))
+                                                    {
+                                                        <button type="submit" class="icon_close" style="border:none"></button>
+                                                    }
+                                                </td>
+                                            </tr>
+
+                                        }
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                <tr>
+                                    <td class="shoping__cart__item">
+                                        <h1>Cart is Empty</h1>
+                                    </td>
+                                       
+                                </tr>
+
+                                    }
+
+                            </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="shoping__cart__btns">
+                    <a asp-action="Shops" class="primary-btn cart-btn">CONTINUE SHOPPING</a>
+                    <a href="#" class="primary-btn cart-btn cart-btn-right">
+                        <span class="icon_loading"></span>
+                        Upadate Cart
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="shoping__continue">
+                    <div class="shoping__discount">
+                        <h5>Discount Codes</h5>
+                        <form action="#">
+                            <input type="text" placeholder="Enter your coupon code">
+                            <button type="submit" class="site-btn">APPLY COUPON</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="shoping__checkout">
+                    <h5>Cart Total</h5>
+                    <ul>
+                        <li>Subtotal <span>$@cost</span></li>
+                        <li>Shipping <span>$00.00 </span> <span style="color:red;">(Free)</span></li>
+                        <li>Total <span>$@cost</span></li>
+                    </ul>
+                    <a href="/Home/pushOrder" class="primary-btn">PROCEED TO CHECKOUT</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+
+    window.addEventListener('load', () => HideRemove())
+
+    function HideRemove() {
+        var element = document.getElementById("Stores");
+        element.classList.add("active");
+
+        var element2 = document.getElementById("Home");
+        element2.classList.remove("active");
+
+        var element3 = document.getElementById("Contact");
+        element3.classList.remove("active");
+
+    }
+
+</script>
+
+

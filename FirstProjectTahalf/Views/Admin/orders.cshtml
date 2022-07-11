@@ -1,0 +1,110 @@
+﻿@model Tuple<IEnumerable<FirstProjectTahalf.Models.ProjectPayment>,
+                   IEnumerable<FirstProjectTahalf.Models.ProjectOrder>,
+                   IEnumerable<FirstProjectTahalf.Models.ProjectUser>>
+@{
+    ViewData["Title"] = "orders";
+    Layout = "~/Views/Shared/_adminLayout.cshtml";
+}
+
+<div class="container-fluid py-4">
+    <div class="row my-4">
+        <div class="container-fluid py-4">
+            <form asp-action="search">
+                <input type="date" name="startDate" placeholder="Start Date" />
+                <input type="date" name="endDate" placeholder="End Date" />
+                <button type="submit">search</button>
+
+            </form>
+            <div class="row">
+                <div class="col-12">
+                    <div class="card mb-4">
+                        <div class="card-header pb-0">
+                            <h6>Orders table</h6>
+                        </div>
+                        <div class="card-body px-0 pt-0 pb-2">
+                            <div class="table-responsive p-0">
+                                <table class="table align-items-center mb-0" id="example">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Paymentid</th>
+                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Date</th>
+                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Total</th>
+                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">user IMG</th>
+                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">user Fullname</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                        @foreach (var item in Model.Item1)
+                                        {
+
+                                            <tr>
+
+                                                <td>
+                                                    <h6 class="mb-0 text-sm">@item.Paymentid</h6>
+                                                </td>
+
+                                                <td>
+                                                    <h6 class="mb-0 text-sm">@item.Datee</h6>
+                                                </td>
+
+                                                <td>
+                                                    <h6 class="mb-0 text-sm">$@item.Total</h6>
+                                                </td>
+
+                                                @foreach (var item2 in Model.Item2)
+                                                {
+                                                    if (item2.Orderid == item.Orderid)
+                                                    {
+                                                        foreach (var item3 in Model.Item3)
+                                                        {
+                                                            if (item3.Userid == item2.Userid)
+                                                            {
+                                                                <td>
+                                                                    <img src=@Url.Content("~/images/" + item3.ImagePath) alt="" style="height:50px; width:50px" ;>
+                                                                </td>
+                                                                <td>
+                                                                    <h6 class="mb-0 text-sm">@item3.Fname @item3.Lname</h6>
+                                                                </td>
+                                                                break;
+                                                            }
+                                                        }
+
+                                                    }
+
+                                                }
+                                            </tr>
+                                        }
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+
+    window.addEventListener('load', () => HideRemove())
+
+    function HideRemove() {
+        var element = document.getElementById("orders");
+        //element.classList.remove("nav-link  ");
+        element.classList.add("active");
+
+        var element2 = document.getElementById("tables");
+        element2.classList.remove("active");
+
+        var element3 = document.getElementById("editHomePage");
+        element3.classList.remove("active");
+
+        var element4 = document.getElementById("Index");
+        element4.classList.remove("active");
+
+    }
+
+</script>

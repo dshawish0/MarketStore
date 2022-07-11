@@ -1,0 +1,61 @@
+﻿@model FirstProjectTahalf.Models.ProjectHome
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_adminLayout.cshtml";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>ProjectHome</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Freeshippinglimit)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Freeshippinglimit)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Phonenumber)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Phonenumber)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Supportworktime)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Supportworktime)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Logoimg)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Logoimg)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Homeimg)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Homeimg)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Address)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Address)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Homeid">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
