@@ -66,7 +66,7 @@ namespace FirstProjectTahalf.Controllers
 
                     SmtpClient emailClinet = new SmtpClient();
                     emailClinet.Connect("smtp.gmail.com", 465, true);
-                    emailClinet.Authenticate("teeeeeestemail@gmail.com", "uzmskscjbzzccmxc");
+                    emailClinet.Authenticate("teeeeeestemail@gmail.com", "zvvugvfrinavklfj");
                     emailClinet.Send(obj);
 
                     emailClinet.Disconnect(true);
